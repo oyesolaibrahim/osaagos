@@ -19,7 +19,7 @@ const Header = () => {
                     </div>
                 </Link>
                 <ul className=" mx-10 flex items-center justify-end space-x-5 my-5">      
-                    <Link><li className="bg-orange-400 px-5 py-3 rounded-lg">Login</li></Link>
+                    <Link to="/auth"><li className="bg-orange-400 px-5 py-3 rounded-lg">Login</li></Link>
                     <Link><li>Register</li></Link>
                 </ul>
             </div>

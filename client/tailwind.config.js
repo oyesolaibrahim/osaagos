@@ -17,6 +17,9 @@ module.exports = {
     "src/components/AdminDashboard/AdminDashboard.jsx",
     "src/components/AdminDashboard/Aside.jsx",
     "src/components/AdminDashboard/Main.jsx",
+    "src/components/Auth/auth.jsx",
+    "src/components/Auth/main.jsx",
+    "src/components/Auth/firstSection.jsx",
     
   ],
   theme: {
