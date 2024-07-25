@@ -8,6 +8,16 @@ module.exports = {
     "src/components/Homepage/SecondSection.jsx",
     "src/components/Homepage/ThirdSection.jsx",
     "src/components/Homepage/Main.jsx",
+    "src/components/AboutUs/AboutUs.jsx",
+    "src/components/AboutUs/Main.jsx",
+    "src/components/AboutUs/FirstSection.jsx",
+    "src/components/AboutUs/SecondSection.jsx",
+    "src/components/AboutUs/ThirdSection.jsx",
+    "src/components/AboutUs/FourthSection.jsx",
+    "src/components/AdminDashboard/AdminDashboard.jsx",
+    "src/components/AdminDashboard/Aside.jsx",
+    "src/components/AdminDashboard/Main.jsx",
+    
   ],
   theme: {
     extend: {},
