@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: 'http://localhost:3000', // Adjust this to your frontend's URL
+    origin: 'http://localhost:3000', 
     methods: ['GET', 'POST'],
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'X-Access-Token', 'Authorization'],
     credentials: true
@@ -17,7 +17,7 @@ const io = socketIo(server, {
 
 // Use CORS middleware
 const corsConfig = {
-  origin: 'http://localhost:3000', // Adjust this to your frontend's URL
+  origin: 'http://localhost:3000', 
   credentials: true,
   allowedHeaders: [
     'Origin',
@@ -79,7 +79,7 @@ io.on('connection', (socket) => {
       const message = new Message(msg);
       await message.save();
       const room = [msg.sender, msg.receiver].sort().join('_');
-      io.to(room).emit('receiveMessage', msg); // Emit message to the specific room
+      io.to(room).emit('receiveMessage', msg); 
     } catch (err) {
       console.error('Error saving message:', err);
     }

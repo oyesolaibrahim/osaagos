@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 const jobListings = [
-  { id: 1, title: 'Frontend Developer', company: 'Tech Corp', location: 'New York, NY', type: 'Full-time', description: 'Build and maintain user interfaces using React.' },
-  { id: 2, title: 'Backend Developer', company: 'Data Inc', location: 'San Francisco, CA', type: 'Part-time', description: 'Develop server-side logic and databases.' },
+  { id: 1, title: 'Frontend Developer', company: 'Tech Corp', location: 'Ibadan', type: 'Full-time', description: 'Build and maintain user interfaces using React.' },
+  { id: 2, title: 'Backend Developer', company: 'Data Inc', location: 'Lagos', type: 'Part-time', description: 'Develop server-side logic and databases.' },
   // Add more job listings as needed
 ];
 

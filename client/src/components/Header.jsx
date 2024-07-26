@@ -62,7 +62,7 @@ const Header = () => {
                         <Link to="/aboutus"><li>About Us</li></Link>
                         {/* <ul>Alumni Profiles</ul> */}
                         {/* <ul>Networking</ul> */}
-                        <Link to="/profile"><li>Events</li></Link>
+                        {/* <Link to="/myprofile"><li>Events</li></Link> */}
                         <Link to="/news"><li>News & Announcements</li></Link>
                         <Link to="/jobs"><li>Job Board</li></Link>
                         <Link to="/donations"><li>Donations</li></Link>
