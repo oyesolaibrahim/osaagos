@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './components/Homepage/Homepage';
 import DashboardOverview from './components/AdminDashboard/AdminDashboard';
 import AboutUs from './components/AboutUs/AboutUs';
-import Auth from "./components/Auth/auth"
+import Login from './components/Auth/login';
+import SignUp from './components/Auth/signup';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/dashboard' element={<DashboardOverview />} />
         <Route path='/aboutus' element={<AboutUs />} />
-        <Route path='/auth' element={<Auth/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/sign-up' element={<SignUp/>}/>
       </Routes>
     </BrowserRouter>
   );
