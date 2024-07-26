@@ -7,6 +7,7 @@ module.exports = {
     "src/components/Homepage/FirstSection.jsx",
     "src/components/Homepage/SecondSection.jsx",
     "src/components/Homepage/ThirdSection.jsx",
+    "src/components/Homepage/FourthSection.jsx",
     "src/components/Homepage/Main.jsx",
     "src/components/AboutUs/AboutUs.jsx",
     "src/components/AboutUs/Main.jsx",
@@ -17,6 +18,10 @@ module.exports = {
     "src/components/AdminDashboard/AdminDashboard.jsx",
     "src/components/AdminDashboard/Aside.jsx",
     "src/components/AdminDashboard/Main.jsx",
+    "src/components/ContactUs/Section.jsx",
+    "src/components/NewsAndAnnouncements/Section.jsx",
+    "src/components/AlumniProfile.jsx",
+    "src/components/Chat.jsx",
     
   ],
   theme: {
