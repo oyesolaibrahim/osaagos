@@ -19,7 +19,10 @@ module.exports = {
     "src/components/AdminDashboard/Main.jsx",
     "src/components/Auth/auth.jsx",
     "src/components/Auth/main.jsx",
+    "src/components/Auth/login.jsx",
+    "src/components/Auth/signup.jsx",
     "src/components/Auth/firstSection.jsx",
+    "src/components/Auth/secondSection.jsx",
     
   ],
   theme: {

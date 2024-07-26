@@ -20,7 +20,7 @@ const Header = () => {
                 </Link>
                 <ul className=" mx-10 flex items-center justify-end space-x-5 my-5">      
                     <Link to="/auth"><li className="bg-orange-400 px-5 py-3 rounded-lg">Login</li></Link>
-                    <Link><li>Register</li></Link>
+                    <Link to={"/auth"}><li>Register</li></Link>
                 </ul>
             </div>
             <div className={`flex justify-between px-10 ${dashboard && "hidden"} bg-white items-center mx-10`}>
