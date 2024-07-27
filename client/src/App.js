@@ -12,7 +12,13 @@ import JobBoard from './components/JobBoard/JobBoard';
 import Donations from './components/Donations/Donations';
 import MediaGallery from './components/MediaGallery/MediaGallery';
 import RegisterForm from './components/ProfileForm';
-import ProfileDisplay from './components/ProfileDisplay';
+import Login from './components/Auth/login';
+import SignUp from './components/Auth/signup';
+import ProfilePage from './components/ProfileDisplay';
+import AddEventForm from './components/Events/EventForm';
+import EventsPage from './components/Events/EventsPage';
+import AddNewsForm from './components/NewsAndAnnouncements/NewsForm';
+
 
 function App() {
   return (
@@ -21,16 +27,21 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/dashboard' element={<DashboardOverview />} />
         <Route path='/aboutus' element={<AboutUs />} />
-        <Route path='/myprofile' element={<SingleProfile />} />
+        <Route path='/search' element={<SingleProfile />} />
         <Route path='/contactus' element={<ContactUs />} />
         <Route path='/news' element={<NewsAndAnnouncements />} />
         <Route path='/profile' element={<AlumniProfile />} />
         <Route path='/jobs' element={<JobBoard />} />
         <Route path='/donations' element={<Donations />} />
         <Route path='/media' element={<MediaGallery />} />
-        <Route path='/chat/:name' element={<Chat sender="CurrentUser" />} />
+        <Route path='/chat' element={<Chat sender="CurrentUser" />} />
         <Route path='/register' element={<RegisterForm />} />
-        <Route path='/profile-display' element={<ProfileDisplay />} />
+        <Route path='/myprofile' element={<ProfilePage />} />
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/sign-up' element={<SignUp/>}/>
+        <Route path='/eventform' element={<AddEventForm/>}/>
+        <Route path='/events' element={<EventsPage/>}/>
+        <Route path='/newsform' element={<AddNewsForm/>}/>
       </Routes>
     </BrowserRouter>
   );

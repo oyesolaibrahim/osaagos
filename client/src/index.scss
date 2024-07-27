@@ -77,6 +77,33 @@ body {
   .margin-top {
      margin-top: 90vh;
   }
-  .footer {
-    margin-top: 180vh;
+  // .footer {
+  //   margin-top: 220vh;
+  // }
+
+  .pageTitle{
+    background-image: url('./assets/page-title.jpg');
+    height: 70vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.8);
   }
+ .formControl{
+   input{
+     text-align: center;
+     &::placeholder{
+       font-size: large;
+     }
+   }
+ }
+.news {
+  background-image: url('./assets/8282936.jpg');
+  height: 80vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  background-color: rgba(0, 0, 0, 0.4);
+}

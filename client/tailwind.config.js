@@ -24,7 +24,11 @@ module.exports = {
     "src/components/Chat.jsx",
     "src/components/ProfileForm.jsx",
     "src/components/ProfileDisplay.jsx",
-    
+    "src/components/Auth/login.jsx",
+    "src/components/Auth/signup.jsx",
+    "src/components/Auth/firstSection.jsx",
+    "src/components/Auth/signupSection.jsx",
+    "src/components/Auth/loginSection.jsx",
   ],
   theme: {
     extend: {},

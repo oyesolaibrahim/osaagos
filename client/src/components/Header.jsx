@@ -45,8 +45,8 @@ const Header = () => {
             >
               Search
             </button>
-            <Link><li className="bg-orange-400 px-5 py-2 rounded-lg list-none">Login</li></Link>
-            <Link to="/register" className="px-5 py-2 hover:bg-orange-400 rounded-lg list-none"><li>Register</li></Link>
+            <Link to="/login"><li className="bg-orange-400 px-5 py-2 rounded-lg list-none">Login</li></Link>
+            <Link to="/sign-up" className="px-5 py-2 hover:bg-orange-400 rounded-lg list-none"><li>Register</li></Link>
           </div>
         </div>
             <div className={`flex justify-between px-10 ${dashboard && "hidden"} bg-white items-center mx-10`}>
@@ -62,7 +62,7 @@ const Header = () => {
                         <Link to="/aboutus"><li>About Us</li></Link>
                         {/* <ul>Alumni Profiles</ul> */}
                         {/* <ul>Networking</ul> */}
-                        {/* <Link to="/myprofile"><li>Events</li></Link> */}
+                        <Link to="/events"><li>Events</li></Link>
                         <Link to="/news"><li>News & Announcements</li></Link>
                         <Link to="/jobs"><li>Job Board</li></Link>
                         <Link to="/donations"><li>Donations</li></Link>

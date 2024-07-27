@@ -1,33 +1,48 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../Footer";
 
 const FourthSection = () => {
-
-    const latestNewsItems = [
-        { id: 1, title: 'Alumni Reunion Event', date: '2024-07-15', content: 'Join us for the annual alumni reunion event this year!', image: '/images/news1.jpg' },
-        { id: 2, title: 'Scholarship Opportunities', date: '2024-07-10', content: 'New scholarship opportunities available for alumni members.', image: '/images/news2.jpg' },
-        { id: 3, title: 'New Alumni Board Members', date: '2024-07-05', content: 'Meet the newly elected members of the alumni board.', image: '/images/news3.jpg' },
-        // { id: 4, title: 'Job Fair 2024', date: '2024-06-25', content: 'Attend the upcoming job fair and network with top companies.', image: '/images/news4.jpg' }
-];
-    
+    const dummyNews = [
+        {
+            title: 'Alumni Reunion Success',
+            content: 'The recent alumni reunion was a huge success, with many attendees praising the organization and the event.',
+            author: 'Jane Smith',
+            timestamp: '2024-07-01'
+        },
+        {
+            title: 'New Scholarships Available',
+            content: 'We are pleased to announce that new scholarships are now available for deserving students and alumni.',
+            author: 'Michael Lee',
+            timestamp: '2024-07-05'
+        },
+        {
+            title: 'Career Development Workshop',
+            content: 'Join our upcoming career development workshop to enhance your skills and advance your career.',
+            author: 'Sarah Wilson',
+            timestamp: '2024-07-10'
+        }
+    ];
+        
     return (
     <>
     <section className="bg-gray-100 py-10 px-5 sm:px-10 lg:px-20">
-        <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-violet-950 mb-10">Latest News</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {latestNewsItems.map(news => (
-                    <div key={news.id} className="bg-white p-6 rounded-lg shadow-md">
-                        <img src={news.image} alt={news.title} className="w-full h-48 object-cover rounded-t-lg mb-4" />
-                        <h3 className="text-2xl font-semibold text-violet-950 mb-2">{news.title}</h3>
-                        <p className="text-gray-500 mb-4">{news.date}</p>
-                        <p className="text-gray-700">{news.content}</p>
-                        <Link to="/news" className="text-cyan-500 hover:underline">Read more</Link>
+    <div className="p-10">
+            <h1 className="text-3xl font-semibold mb-6">Latest News</h1>
+            <div className="space-y-6">
+                {dummyNews.map((news, index) => (
+                    <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden p-6">
+                        <h2 className="text-2xl font-semibold mb-2">{news.title}</h2>
+                        <p className="text-gray-700 mb-2">{news.content.substring(0, 100)}...</p>
+                        <Link to={`/news/${index}`} className="text-orange-400 hover:underline">Read More</Link>
+                        <p className="text-gray-500 mt-2">Author: {news.author}</p>
+                        <p className="text-gray-500">Date: {news.timestamp}</p>
                     </div>
                 ))}
             </div>
         </div>
     </section>
+    <Footer/>
 </>
 );
 };
