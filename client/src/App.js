@@ -11,6 +11,8 @@ import Chat from './components/Chat';
 import JobBoard from './components/JobBoard/JobBoard';
 import Donations from './components/Donations/Donations';
 import MediaGallery from './components/MediaGallery/MediaGallery';
+import RegisterForm from './components/ProfileForm';
+import ProfileDisplay from './components/ProfileDisplay';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path='/donations' element={<Donations />} />
         <Route path='/media' element={<MediaGallery />} />
         <Route path='/chat/:name' element={<Chat sender="CurrentUser" />} />
+        <Route path='/register' element={<RegisterForm />} />
+        <Route path='/profile-display' element={<ProfileDisplay />} />
       </Routes>
     </BrowserRouter>
   );

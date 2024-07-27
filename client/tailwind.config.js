@@ -22,6 +22,8 @@ module.exports = {
     "src/components/NewsAndAnnouncements/Section.jsx",
     "src/components/AlumniProfile.jsx",
     "src/components/Chat.jsx",
+    "src/components/ProfileForm.jsx",
+    "src/components/ProfileDisplay.jsx",
     
   ],
   theme: {
