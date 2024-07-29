@@ -7,19 +7,19 @@ const FourthSection = () => {
         {
             title: 'Alumni Reunion Success',
             content: 'The recent alumni reunion was a huge success, with many attendees praising the organization and the event.',
-            author: 'Jane Smith',
+            author: 'Ibrahim',
             timestamp: '2024-07-01'
         },
         {
             title: 'New Scholarships Available',
             content: 'We are pleased to announce that new scholarships are now available for deserving students and alumni.',
-            author: 'Michael Lee',
+            author: 'Ibrahim',
             timestamp: '2024-07-05'
         },
         {
             title: 'Career Development Workshop',
             content: 'Join our upcoming career development workshop to enhance your skills and advance your career.',
-            author: 'Sarah Wilson',
+            author: 'Ibrahim',
             timestamp: '2024-07-10'
         }
     ];
