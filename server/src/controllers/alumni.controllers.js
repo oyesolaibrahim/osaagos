@@ -21,6 +21,7 @@ const addAlumni = (req, res) => {
     if (!req.file) {
         return res.status(400).json({ message: 'Profile picture is required.' });
     }
+    const profilePicturePath = req.file ? req.file.path : null;
 
     // Hash the password
     const hashPassword = bcrypt.hashSync(req.body.password, 10);
@@ -35,7 +36,7 @@ const addAlumni = (req, res) => {
             gender: req.body.gender,
             address: req.body.address,
             password: hashPassword,
-            profilePicture: req.file.path,  // Save file path here
+            profilePicture: profilePicturePath,  // Save file path here
             socialMediaLinks: {
                 linkedin: req.body.linkedin,
                 facebook: req.body.facebook,

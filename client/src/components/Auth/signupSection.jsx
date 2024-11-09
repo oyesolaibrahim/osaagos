@@ -13,11 +13,11 @@ const SignUpSection = () => {
         password: '',
         confirmPassword: '',
         phoneNumber: '',
-        dateOfBirth: '', // renamed from dob
+        dateOfBirth: '', 
         gender: '',
         address: '',
         profilePicture: null,
-        linkedin: '', // added individual social media links
+        linkedin: '', 
         facebook: '',
         twitter: '',
         instagram: '',
@@ -42,33 +42,41 @@ const SignUpSection = () => {
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
-        setFormData(prevState => ({
+        setFormData((prevState) => ({
             ...prevState,
-            [name]: type === 'file' ? files[0] : value
+            [name]: type === "file" ? files[0] : value,
         }));
     };
-
     const handleSignup = (e) => {
         e.preventDefault();
         setLoading(true);
-
+    
         const formDataToSend = new FormData();
-        Object.keys(formData).forEach(key => {
-            formDataToSend.append(key, formData[key]);
+        Object.keys(formData).forEach((key) => {
+            if (formData[key] instanceof File) {
+                formDataToSend.append(key, formData[key]);
+            } else {
+                formDataToSend.append(key, formData[key] || "");
+            }
         });
-
-        axios.post('http://localhost:5000/api/register', formDataToSend)
+    
+        axios
+            .post("http://localhost:5000/api/register", formDataToSend, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
             .then((result) => {
                 console.log(result);
                 setLoading(false);
-                navigate('/login');
+                navigate("/login");
             })
-            .catch(error => {
+            .catch((error) => {
                 setLoading(false);
-                setError(error.response?.data?.message || 'An error occurred');
+                setError(error.response?.data?.message || "An error occurred");
             });
     };
-
+    
     const handleNextStep = () => {
         if (step < 3) {
             setStep(step + 1);

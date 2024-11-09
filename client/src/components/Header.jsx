@@ -129,7 +129,7 @@ const Header = () => {
           <div className={`flex-col md:flex md:flex-row md:items-center px-10 bg-white border-t border-gray-200 py-3 ${menuOpen ? 'block' : 'hidden'} md:block`}>
             <Link to="/" aria-label="Home" className="flex items-center space-x-2 mb-2 md:mb-0">
               <img src={logo} alt="OSAAGOS Logo" className="h-10" />
-              <h1 className="text-2xl font-bold text-blue-800">OSAAGOS</h1>
+              {/* <h1 className="text-2xl font-bold text-blue-800">OSAAGOS</h1> */}
             </Link>
             <nav className="flex flex-col md:flex-row md:space-x-5">
               <Link to="/" className={`py-1 ${location.pathname === "/" ? "font-bold" : ""}`}>Home</Link>
