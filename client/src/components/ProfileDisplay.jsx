@@ -1,45 +1,26 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
-function ProfilePage() {
+const ProfilePage = () => {
+    const [userProfile, setUserProfile] = useState("Ibrahim")
+    const [userEmail, setUserEmail] = useState(sessionStorage.getItem("savedUserEmail"))
+    console.log(userEmail)
+    useEffect(() => {
+        axios.get(`http://localhost:5000/api/register?userEmail=${userEmail}`)  
+            .then((response) => {
+                setUserProfile(response?.data?.alumni);
+                console.log(userProfile)
+            })
+            .catch((error) => {
+                console.error("Error fetching alumni profile data:", error);
+            });
+    }, []);
 
   const navigate = useNavigate()
-    const dummyUser = {
-        personalDetails: {
-            fullName: 'Oyesola Ibrahim',
-            email: 'oyesolaibrahim@example.com',
-            phoneNumber: '+2348156789560',
-            dateOfBirth: '1990-01-01',
-            gender: 'Male',
-            address: '123 Main St, Bodija, Ibadan',
-            profilePicture: 'https://via.placeholder.com/150',
-            socialMediaLinks: {
-                linkedin: 'https://linkedin.com/in/johndoe',
-                facebook: 'https://facebook.com/johndoe',
-                twitter: 'https://twitter.com/johndoe',
-                instagram: 'https://instagram.com/johndoe'
-            }
-        },
-        educationalDetails: {
-            institutionName: 'Example University',
-            degree: 'Bachelor of Science',
-            fieldOfStudy: 'Computer Science',
-            graduationYear: '2012',
-            additionalCertifications: 'Certified Java Developer',
-            honorsAndAwards: 'Summa Cum Laude',
-            clubsAndSocieties: 'Computer Science Club'
-        },
-        professionalDetails: {
-            currentJobTitle: 'Software Engineer',
-            currentEmployer: 'Tech Company',
-            previousJobs: 'Junior Developer at Web Solutions',
-            skills: 'JavaScript, React, Node.js',
-            professionalCertifications: 'AWS Certified Solutions Architect',
-            professionalAchievements: 'Developed a successful e-commerce platform',
-            industry: 'Technology',
-            professionalWebsite: 'https://johndoe.dev'
-        }
-    };
+    
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -52,6 +33,8 @@ function ProfilePage() {
     };
 
     return (
+        <>
+        <Header/>
         <div className="p-10">
             <div className="mb-6 flex">
                 <input
@@ -71,51 +54,54 @@ function ProfilePage() {
             <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
                 <div className="bg-cover bg-center h-56 p-4" style={{ backgroundImage: `url('https://via.placeholder.com/1200x400')` }}>
                     <div className="flex justify-center items-center h-full">
-                        <img className="h-32 w-32 rounded-full border-4 border-white shadow-lg" src={dummyUser.personalDetails.profilePicture} alt="Profile" />
+                        <img className="h-32 w-32 rounded-full border-4 border-white shadow-lg" src={userProfile?.personalDetails?.profilePicture} alt="Profile" />
                     </div>
                 </div>
                 <div className="p-6">
-                    <h1 className="text-3xl font-semibold mb-2">{dummyUser.personalDetails.fullName}</h1>
-                    <p className="text-gray-700 mb-4">{dummyUser.personalDetails.email}</p>
+                    <h1 className="text-3xl font-semibold mb-2">{userProfile?.personalDetails?.fullName}</h1>
+                    <p className="text-gray-700 mb-4">{userProfile?.personalDetails?.email}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                         <div>
                             <h2 className="text-xl font-semibold">Personal Details</h2>
-                            <p><strong>Phone:</strong> {dummyUser.personalDetails.phoneNumber}</p>
-                            <p><strong>Date of Birth:</strong> {dummyUser.personalDetails.dateOfBirth}</p>
-                            <p><strong>Gender:</strong> {dummyUser.personalDetails.gender}</p>
-                            <p><strong>Address:</strong> {dummyUser.personalDetails.address}</p>
+                            <p><strong>Phone:</strong> {userProfile?.personalDetails?.phoneNumber}</p>
+                            <p><strong>Date of Birth:</strong> {userProfile?.personalDetails?.dateOfBirth}</p>
+                            <p><strong>Gender:</strong> {userProfile?.personalDetails?.gender}</p>
+                            <p><strong>Address:</strong> {userProfile?.personalDetails?.address}</p>
                             <div className="flex space-x-4 mt-2">
-                                <a href={dummyUser.personalDetails.socialMediaLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600">LinkedIn</a>
-                                <a href={dummyUser.personalDetails.socialMediaLinks.facebook} target="_blank" rel="noopener noreferrer" className="text-blue-600">Facebook</a>
-                                <a href={dummyUser.personalDetails.socialMediaLinks.twitter} target="_blank" rel="noopener noreferrer" className="text-blue-600">Twitter</a>
-                                <a href={dummyUser.personalDetails.socialMediaLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-blue-600">Instagram</a>
+                                <a href={userProfile?.personalDetails?.socialMediaLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600">LinkedIn</a>
+                                <a href={userProfile?.personalDetails?.socialMediaLinks.facebook} target="_blank" rel="noopener noreferrer" className="text-blue-600">Facebook</a>
+                                <a href={userProfile?.personalDetails?.socialMediaLinks.twitter} target="_blank" rel="noopener noreferrer" className="text-blue-600">Twitter</a>
+                                <a href={userProfile?.personalDetails?.socialMediaLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-blue-600">Instagram</a>
                             </div>
                         </div>
                         <div>
                             <h2 className="text-xl font-semibold">Educational Details</h2>
-                            <p><strong>Institution:</strong> {dummyUser.educationalDetails.institutionName}</p>
-                            <p><strong>Degree:</strong> {dummyUser.educationalDetails.degree}</p>
-                            <p><strong>Field of Study:</strong> {dummyUser.educationalDetails.fieldOfStudy}</p>
-                            <p><strong>Graduation Year:</strong> {dummyUser.educationalDetails.graduationYear}</p>
-                            <p><strong>Certifications:</strong> {dummyUser.educationalDetails.additionalCertifications}</p>
-                            <p><strong>Honors:</strong> {dummyUser.educationalDetails.honorsAndAwards}</p>
-                            <p><strong>Clubs:</strong> {dummyUser.educationalDetails.clubsAndSocieties}</p>
+                            <p><strong>Institution:</strong> {userProfile?.educationalDetails?.institutionName}</p>
+                            <p><strong>Degree:</strong> {userProfile?.educationalDetails?.degree}</p>
+                            <p><strong>Field of Study:</strong> {userProfile?.educationalDetails?.fieldOfStudy}</p>
+                            <p><strong>Graduation Year:</strong> {userProfile?.educationalDetails?.graduationYear}</p>
+                            <p><strong>Certifications:</strong> {userProfile?.educationalDetails?.additionalCertifications}</p>
+                            <p><strong>Honors:</strong> {userProfile?.educationalDetails?.honorsAndAwards}</p>
+                            <p><strong>Clubs:</strong> {userProfile?.educationalDetails?.clubsAndSocieties}</p>
                         </div>
                     </div>
                     <div>
                         <h2 className="text-xl font-semibold">Professional Details</h2>
-                        <p><strong>Current Job:</strong> {dummyUser.professionalDetails.currentJobTitle}</p>
-                        <p><strong>Employer:</strong> {dummyUser.professionalDetails.currentEmployer}</p>
-                        <p><strong>Previous Jobs:</strong> {dummyUser.professionalDetails.previousJobs}</p>
-                        <p><strong>Skills:</strong> {dummyUser.professionalDetails.skills}</p>
-                        <p><strong>Certifications:</strong> {dummyUser.professionalDetails.professionalCertifications}</p>
-                        <p><strong>Achievements:</strong> {dummyUser.professionalDetails.professionalAchievements}</p>
-                        <p><strong>Industry:</strong> {dummyUser.professionalDetails.industry}</p>
-                        <p><strong>Website:</strong> <a href={dummyUser.professionalDetails.professionalWebsite} target="_blank" rel="noopener noreferrer" className="text-blue-600">Visit</a></p>
+                        <p><strong>Current Job:</strong> {userProfile?.professionalDetails?.currentJobTitle}</p>
+                        <p><strong>Employer:</strong> {userProfile?.professionalDetails?.currentEmployer}</p>
+                        <p><strong>Previous Jobs:</strong> {userProfile?.professionalDetails?.previousJobs}</p>
+                        <p><strong>Skills:</strong> {userProfile?.professionalDetails?.skills}</p>
+                        <p><strong>Certifications:</strong> {userProfile?.professionalDetails?.professionalCertifications}</p>
+                        <p><strong>Achievements:</strong> {userProfile?.professionalDetails?.professionalAchievements}</p>
+                        <p><strong>Industry:</strong> {userProfile?.professionalDetails?.industry}</p>
+                        <p><strong>Website:</strong> <a href={userProfile?.professionalDetails?.professionalWebsite} target="_blank" rel="noopener noreferrer" className="text-blue-600">Visit</a></p>
                     </div>
                 </div>
             </div>
         </div>
+        <Footer/>
+        </>
+        
     );
 }
 

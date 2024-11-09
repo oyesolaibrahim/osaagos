@@ -1,10 +1,74 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUpSection = () => {
     const [step, setStep] = useState(1);
     const [progress, setProgress] = useState(0);
-    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+        dateOfBirth: '', // renamed from dob
+        gender: '',
+        address: '',
+        profilePicture: null,
+        linkedin: '', // added individual social media links
+        facebook: '',
+        twitter: '',
+        instagram: '',
+        institutionName: '',
+        degree: '',
+        fieldOfStudy: '',
+        graduationYear: '',
+        additionalCertifications: '',
+        honorsAndAwards: '',
+        clubsAndSocieties: '',
+        currentJobTitle: '',
+        currentEmployer: '',
+        previousJobs: '',
+        skills: '',
+        professionalCertifications: '',
+        professionalAchievements: '',
+        industry: '',
+        professionalWebsite: ''
+    });
+
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        const { name, value, type, files } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: type === 'file' ? files[0] : value
+        }));
+    };
+
+    const handleSignup = (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const formDataToSend = new FormData();
+        Object.keys(formData).forEach(key => {
+            formDataToSend.append(key, formData[key]);
+        });
+
+        axios.post('http://localhost:5000/api/register', formDataToSend)
+            .then((result) => {
+                console.log(result);
+                setLoading(false);
+                navigate('/login');
+            })
+            .catch(error => {
+                setLoading(false);
+                setError(error.response?.data?.message || 'An error occurred');
+            });
+    };
+
     const handleNextStep = () => {
         if (step < 3) {
             setStep(step + 1);
@@ -19,10 +83,10 @@ const SignUpSection = () => {
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         setProgress(100);
-        navigate("/myprofile")
-        // Handle form submission here
+        handleSignup(e); 
     };
 
     return (
@@ -34,7 +98,7 @@ const SignUpSection = () => {
                 </div>
                 <p className="absolute right-0 -top-1 text-sm font-semibold text-gray-700">{progress}%</p>
             </div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 {step === 1 && (
                     <div>
                         <h2 className="text-2xl font-semibold mb-4">Personal Details</h2>
@@ -47,6 +111,14 @@ const SignUpSection = () => {
                             <div className="sm:col-span-3">
                                 <label htmlFor="email" className="block text-sm font-medium text-gray-900">Email</label>
                                 <input id="email" name="email" type="email" required className="block w-full h-10 border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-2 ring-inset ring-gray-300 focus:ring-orange-400 sm:text-sm" />
+                            </div>
+                            <div className="sm:col-span-3">
+                                <label htmlFor="password" className="block text-sm font-medium text-gray-900">Password</label>
+                                <input id="password" name="password" type="password" required className="block w-full h-10 border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-2 ring-inset ring-gray-300 focus:ring-orange-400 sm:text-sm" />
+                            </div>
+                            <div className="sm:col-span-3">
+                                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-900">Confirm Password</label>
+                                <input id="confirmPassword" name="confirmPassword" type="password" required className="block w-full h-10 border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-2 ring-inset ring-gray-300 focus:ring-orange-400 sm:text-sm" />
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-900">Phone Number</label>
@@ -136,13 +208,13 @@ const SignUpSection = () => {
                                 <label htmlFor="currentEmployer" className="block text-sm font-medium text-gray-900">Current Employer</label>
                                 <input id="currentEmployer" name="currentEmployer" type="text" required className="block w-full h-10 border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-2 ring-inset ring-gray-300 focus:ring-orange-400 sm:text-sm" />
                             </div>
-                            <div className="sm:col-span-6">
+                            <div className="sm:col-span-3">
                                 <label htmlFor="previousJobs" className="block text-sm font-medium text-gray-900">Previous Jobs</label>
-                                <textarea id="previousJobs" name="previousJobs" required className="block w-full h-20 border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-2 ring-inset ring-gray-300 focus:ring-orange-400 sm:text-sm"></textarea>
+                                <input id="previousJobs" name="previousJobs" type="text" required className="block w-full h-10 border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-2 ring-inset ring-gray-300 focus:ring-orange-400 sm:text-sm" />
                             </div>
-                            <div className="sm:col-span-6">
+                            <div className="sm:col-span-3">
                                 <label htmlFor="skills" className="block text-sm font-medium text-gray-900">Skills</label>
-                                <textarea id="skills" name="skills" required className="block w-full h-20 border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-2 ring-inset ring-gray-300 focus:ring-orange-400 sm:text-sm"></textarea>
+                                <input id="skills" name="skills" type="text" required className="block w-full h-10 border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-2 ring-inset ring-gray-300 focus:ring-orange-400 sm:text-sm" />
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="professionalCertifications" className="block text-sm font-medium text-gray-900">Professional Certifications</label>
@@ -168,15 +240,10 @@ const SignUpSection = () => {
                     </div>
                 )}
             </form>
-            <div className="sm:col-span-6 flex justify-between h-20 p-4">
-                <hr className="w-1/3" style={{ alignSelf: "center" }} />
-                <span className="text-sm text-gray-400" style={{ alignSelf: "center" }}>Already a member? 
-                    <Link to="/login" className="text-orange-400"> Login</Link>
-                </span>
-                <hr className="w-1/3" style={{ alignSelf: "center" }} />
-            </div>
+            {error && <p className="text-red-500">{error}</p>}
+            {loading && <p className="text-gray-500">Submitting...</p>}
         </div>
     );
-}
+};
 
 export default SignUpSection;
